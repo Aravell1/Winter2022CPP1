@@ -61,10 +61,10 @@ TextureImporter:
     second: Sprite_Mario_18
   - first:
       213: 7479211179968422096
-    second: Sprite_Mario_19
+    second: Sprite_Mario_99
   - first:
       213: -1941499065591448453
-    second: Sprite_Mario_20
+    second: MarioFloat
   - first:
       213: -4629119407898994041
     second: Sprite_Mario_21
@@ -685,7 +685,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_19
+      name: Sprite_Mario_99
       rect:
         serializedVersion: 2
         x: 366
@@ -706,7 +706,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_20
+      name: MarioFloat
       rect:
         serializedVersion: 2
         x: 388

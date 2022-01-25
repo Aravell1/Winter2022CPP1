@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 24670496}
   - component: {fileID: 24670497}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 44929417}
   - component: {fileID: 44929418}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 172824185}
   - component: {fileID: 172824186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RaisedFloor3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 174489656}
   - component: {fileID: 174489657}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pipe5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 206617705}
   - component: {fileID: 206617706}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pipe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 294345213}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StoneBlocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 426548249}
   - component: {fileID: 426548251}
   - component: {fileID: 426548250}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RaisedFloor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,11 +683,41 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &775909673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775909674}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775909674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775909673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 909388224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837698090
@@ -699,7 +729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 837698091}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848594376}
   - component: {fileID: 848594377}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,6 +828,8 @@ GameObject:
   - component: {fileID: 909388222}
   - component: {fileID: 909388221}
   - component: {fileID: 909388225}
+  - component: {fileID: 909388227}
+  - component: {fileID: 909388226}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -911,9 +943,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909388220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.57, y: -3.38, z: 0}
+  m_LocalPosition: {x: -7.57, y: -3.868, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 775909674}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -929,6 +962,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37d6cf75cc05d744ab442b1981a8716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &909388226
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909388220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e1eb60645cce90429ddc57760b01460, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &909388227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909388220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43a7b9e519bca94891298d659867bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verbose: 0
+  isGrounded: 0
+  speed: 0
+  jumpForce: 0
+  groundCheckRadius: 0
+  isGroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheck: {fileID: 0}
 --- !u!1 &999161955
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1104727552}
   - component: {fileID: 1104727553}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1123209678}
   - component: {fileID: 1123209679}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RaisedFloor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1216675129}
   - component: {fileID: 1216675130}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pipe3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,7 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395648791}
   - component: {fileID: 1395648792}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482945883}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pipes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1373,7 +1446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511397238}
   - component: {fileID: 1511397239}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stone3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1434,7 +1507,7 @@ GameObject:
   - component: {fileID: 1576620685}
   - component: {fileID: 1576620684}
   - component: {fileID: 1576620683}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BoundFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1453,7 +1526,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 10.008035, y: -4.7}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1595,7 +1668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1582880761}
   - component: {fileID: 1582880762}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1687,7 +1760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822922534}
   - component: {fileID: 1822922535}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1744,7 +1817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1832465610}
   - component: {fileID: 1832465611}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pipe4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1858,7 +1931,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1984022133}
   - component: {fileID: 1984022134}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1915,7 +1988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2001494249}
   - component: {fileID: 2001494250}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1971,7 +2044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2001817016}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RaisedFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2005,7 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2010970072}
   - component: {fileID: 2010970073}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2062,7 +2135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029193658}
   - component: {fileID: 2029193659}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pipe2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
