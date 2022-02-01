@@ -95,21 +95,10 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce);
         }
 
-        Vector2 moveDir = new Vector2(hInput * speed, rb.velocity.y);
-        rb.velocity = moveDir;
-
         anim.SetFloat("xVel", Mathf.Abs(hInput));
         anim.SetBool("isGrounded", isGrounded);
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.SetBool("attack", true);
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            anim.SetBool("attack", false);
-        }
-
+       
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -120,13 +109,22 @@ public class Player : MonoBehaviour
             anim.SetBool("float", false);
         }
 
-        if (hInput < 0)
+
+        AnimatorClipInfo[] curPlayingClip = anim.GetCurrentAnimatorClipInfo(0);
+
+        if (curPlayingClip[0].clip.name != "Attack" || isGrounded == false)
         {
-            sr.flipX = true;
+            Vector2 moveDir = new Vector2(hInput * speed, rb.velocity.y);
+            rb.velocity = moveDir;
         }
-        if (hInput > 0)
+        else 
         {
-            sr.flipX = false;
+            rb.velocity = Vector2.zero;
+        }
+
+        if (hInput > 0 && sr.flipX || hInput < 0 && !sr.flipX)
+        {
+            sr.flipX = !sr.flipX;
         }
     }
 }
