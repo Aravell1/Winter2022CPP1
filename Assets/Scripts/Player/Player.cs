@@ -13,6 +13,51 @@ public class Player : MonoBehaviour
     SpriteRenderer sr;
     Animator anim;
 
+    int _score = 0;
+    int _lives = 1;
+    public int maxLives = 3;
+
+    public int lives
+    {
+        get 
+        {
+            return _lives;
+        }
+        set
+        {
+            /*if (_lives > value)
+            {
+                respawn code goes here
+            }*/
+
+            _lives = value;
+            if (_lives > maxLives)
+            {
+                _lives = maxLives;
+            }
+
+            /*if (_lives < 0)
+            {
+                Game Over
+            }*/
+
+            Debug.Log("Lives Set to: " + lives.ToString());
+        }
+    }
+    
+    public int score
+    {
+        get 
+        {
+            return _score;
+        }
+        set 
+        {
+            _score = value;
+            Debug.Log("Score Set to: " + score.ToString());
+        }
+    }
+
     [SerializeField]
     float speed;
 
@@ -28,7 +73,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     Transform groundCheck;
 
-
+    bool coroutineRunning = false;
 
 
     // Start is called before the first frame update
@@ -126,5 +171,30 @@ public class Player : MonoBehaviour
         {
             sr.flipX = !sr.flipX;
         }
+    }
+
+    public void StartJumpForceChange()
+    {
+        if (!coroutineRunning)
+        {
+            StartCoroutine("JumpForceChange");
+        }
+        else
+        {
+            StopCoroutine("JumpForceChange");
+            jumpForce /= 2;
+            StartCoroutine("JumpForceChange");
+        }
+    }
+
+    IEnumerator JumpForceChange()
+    {
+        coroutineRunning = true;
+        jumpForce *= 2;
+
+        yield return new WaitForSeconds(5.0f);
+
+        jumpForce /= 2;
+        coroutineRunning = false;
     }
 }

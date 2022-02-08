@@ -19,6 +19,11 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
+    private void Update()
+    {
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Projectile will not destroy itself on the floor, but will on the wall
