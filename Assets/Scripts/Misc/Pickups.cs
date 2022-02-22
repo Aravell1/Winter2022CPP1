@@ -21,6 +21,7 @@ public class Pickups : MonoBehaviour
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(-2, rb.velocity.y);
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,12 +35,28 @@ public class Pickups : MonoBehaviour
                     curPlayerScript.StartJumpForceChange();
                     curPlayerScript.score += ScoreValue;
                     break;
+                case CollectibleType.SCORE:
+                    curPlayerScript.score += ScoreValue;
+                    break;
+            }
+            Destroy(gameObject);
+        }        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "PowerUp" || collision.gameObject.tag == "Enemy")
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            Player curPlayerScript = collision.gameObject.GetComponent<Player>();
+            switch (curCollectible)
+            {
                 case CollectibleType.LIFE:
                     curPlayerScript.score += ScoreValue;
                     curPlayerScript.lives++;
-                    break;
-                case CollectibleType.SCORE:
-                    curPlayerScript.score += ScoreValue;
                     break;
             }
             Destroy(gameObject);

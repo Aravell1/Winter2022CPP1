@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
         else
         {
             StopCoroutine("JumpForceChange");
-            jumpForce /= 2;
+            jumpForce = 300;
             StartCoroutine("JumpForceChange");
         }
     }
@@ -190,11 +190,22 @@ public class Player : MonoBehaviour
     IEnumerator JumpForceChange()
     {
         coroutineRunning = true;
-        jumpForce *= 2;
+        jumpForce = 400;
 
         yield return new WaitForSeconds(5.0f);
 
-        jumpForce /= 2;
+        jumpForce = 300;
         coroutineRunning = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Squish" && rb.velocity.y < 0)
+        {
+            collision.gameObject.GetComponentInParent<EnemyWalker>().IsSquished();
+            rb.velocity = Vector2.zero;
+            rb.AddForce(Vector2.up * jumpForce);
+            Destroy(collision.gameObject);
+        }
     }
 }

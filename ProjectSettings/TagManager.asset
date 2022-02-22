@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - PowerUp
+  - Barrier
+  - Squish
+  - Enemy
+  - PlayerProjectile
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -39,11 +44,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background2
     uniqueID: 3057766499
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: PlayArea
     uniqueID: 1753921699
