@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
             damageValue = 2;
         }
 
-        GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+        //GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
         Destroy(gameObject, lifetime);
     }
 
@@ -63,7 +63,7 @@ public class Projectile : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<Player>().lives--;
+                GameManager.instance.lives--;
                 Destroy(gameObject);
             }
             else

@@ -28,15 +28,14 @@ public class Pickups : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Player curPlayerScript = collision.gameObject.GetComponent < Player > ();
             switch (curCollectible)
             {
                 case CollectibleType.POWERUP:
-                    curPlayerScript.StartJumpForceChange();
-                    curPlayerScript.score += ScoreValue;
+                    collision.gameObject.GetComponent<Player>().StartJumpForceChange();
+                    GameManager.instance.score += ScoreValue;
                     break;
                 case CollectibleType.SCORE:
-                    curPlayerScript.score += ScoreValue;
+                    GameManager.instance.score += ScoreValue;
                     break;
             }
             Destroy(gameObject);
@@ -51,12 +50,12 @@ public class Pickups : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
-            Player curPlayerScript = collision.gameObject.GetComponent<Player>();
+            //Player curPlayerScript = collision.gameObject.GetComponent<Player>();
             switch (curCollectible)
             {
                 case CollectibleType.LIFE:
-                    curPlayerScript.score += ScoreValue;
-                    curPlayerScript.lives++;
+                    GameManager.instance.score += ScoreValue;
+                    GameManager.instance.lives++;
                     break;
             }
             Destroy(gameObject);

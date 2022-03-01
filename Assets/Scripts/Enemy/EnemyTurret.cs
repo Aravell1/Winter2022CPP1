@@ -6,13 +6,16 @@ public class EnemyTurret : Enemy
 {
     [SerializeField] float projectileForce;
     [SerializeField] float projectileFireRate;
+    [SerializeField] float turretFireDistance;
 
-    float timeSinceLastFire;
+    float timeOfLastFire;
 
     public Transform projectileSpawnPointRight;
     public Transform projectileSpawnPointLeft;
 
     public Projectile projectilePrefab;
+
+
 
 
     // Start is called before the first frame update
@@ -27,6 +30,11 @@ public class EnemyTurret : Enemy
         if (projectileFireRate <= 0)
         {
             projectileFireRate = 2.0f;
+        }
+
+        if (turretFireDistance <= 0)
+        {
+            turretFireDistance = 7f;
         }
 
         if (!projectilePrefab)
@@ -56,12 +64,13 @@ public class EnemyTurret : Enemy
     void Update()
     {
         AnimatorClipInfo[] curPlayingClip = anim.GetCurrentAnimatorClipInfo(0);
+        float distance = Vector2.Distance(transform.position, GameManager.instance.playerInstance.transform.position);
 
         if (!anim.GetBool("Fire"))
         {
-            if (Mathf.Abs(gameObject.transform.position.x - GameObject.Find("Player").transform.position.x) <= 5)
+            if (distance <= turretFireDistance)
             {
-                if (gameObject.transform.position.x > GameObject.Find("Player").transform.position.x)
+                if (transform.position.x > GameManager.instance.playerInstance.transform.position.x)
                 {
                     sr.flipX = true;
                 }
@@ -70,7 +79,7 @@ public class EnemyTurret : Enemy
                     sr.flipX = false;
                 }
 
-                if (Time.time > timeSinceLastFire + projectileFireRate)
+                if (Time.time > timeOfLastFire + projectileFireRate)
                 {
                     if (curPlayingClip[0].clip.name != "Fire")
                     {
@@ -78,25 +87,26 @@ public class EnemyTurret : Enemy
                     }
                 }
             }
-            //Check direction and distance
             
         }
     }
 
     public void Fire()
     {
-        timeSinceLastFire = Time.time;
+        timeOfLastFire = Time.time;
+
+        Vector2 dirToPlayer = (GameManager.instance.playerInstance.transform.position - transform.position).normalized;
+        Projectile temp;
                 
         if (sr.flipX)
         {
-            Projectile temp = Instantiate(projectilePrefab, projectileSpawnPointLeft.position, projectileSpawnPointLeft.rotation);
-            temp.speed = -projectileForce;
+            temp = Instantiate(projectilePrefab, projectileSpawnPointLeft.position, projectileSpawnPointLeft.rotation);
         }
         else
         {
-            Projectile temp = Instantiate(projectilePrefab, projectileSpawnPointRight.position, projectileSpawnPointRight.rotation);
-            temp.speed = projectileForce;
+            temp = Instantiate(projectilePrefab, projectileSpawnPointRight.position, projectileSpawnPointRight.rotation);
         }
+        temp.gameObject.GetComponent<Rigidbody2D>().velocity = dirToPlayer * projectileForce;
     }
 
     public override void Death()
