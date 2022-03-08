@@ -40,9 +40,14 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (GameObject.Find("GameManager").GetComponent<GameManager>().gamePaused == false)
         {
-            anim.SetTrigger("attack 0");
+            AnimatorClipInfo[] curPlayingClip = anim.GetCurrentAnimatorClipInfo(0);
+
+            if (Input.GetButtonDown("Fire1") && curPlayingClip[0].clip.name != "Attack")
+            {
+                anim.SetTrigger("attack 0");
+            }
         }
     }
 

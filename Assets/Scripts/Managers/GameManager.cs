@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
         get { return _instance; }
         set { _instance = value; }
     }
+
+    public bool gamePaused = false;
     
     int _score = 0;
     int _lives = 1;
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
                 _lives = maxLives;
             }
 
+            onLifeValueChange.Invoke(value);
 
             if (_lives < 0)
             {
@@ -50,6 +54,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [HideInInspector] public UnityEvent<int> onLifeValueChange;
+    [HideInInspector] public UnityEvent<int> onScoreValueChange;
     [HideInInspector] public GameObject playerInstance;
     [HideInInspector] public Level currentLevel;
 
@@ -63,6 +69,7 @@ public class GameManager : MonoBehaviour
         {
             _score = value;
             Debug.Log("Score Set to: " + score.ToString());
+            onScoreValueChange.Invoke(value);
         }
     }
 
@@ -85,7 +92,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (SceneManager.GetActiveScene().name == "Title")
             {
@@ -95,16 +102,7 @@ public class GameManager : MonoBehaviour
             {
                 SceneManager.LoadScene("Title");
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif
-        }
+        }*/        
     }
 
     public void SpawnPlayer(Transform spawnlocation)

@@ -37,7 +37,15 @@ public class EnemyWalker : Enemy
                 rb.velocity = new Vector2(speed, rb.velocity.y);
             }
         }
-        
+
+        if (GameObject.Find("GameManager").GetComponent<GameManager>().gamePaused == true)
+        {
+            anim.enabled = false;
+        }
+        else
+        {
+            anim.enabled = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

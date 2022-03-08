@@ -86,8 +86,16 @@ public class EnemyTurret : Enemy
                         anim.SetBool("Fire", true);
                     }
                 }
-            }
-            
+            }            
+        }
+
+        if (GameObject.Find("GameManager").GetComponent<GameManager>().gamePaused == true)
+        {
+            anim.enabled = false;
+        }
+        else
+        {
+            anim.enabled = true;
         }
     }
 
