@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class GameManager : MonoBehaviour
     public int maxLives = 3;
     public GameObject playerPrefab;
 
+    public AudioClip playerDamage;
+    public AudioClip gameOver;
+    public AudioMixerGroup soundFXGroup;
+
     public int lives
     {
         get
@@ -30,7 +35,10 @@ public class GameManager : MonoBehaviour
         {
             if (_lives > value)
             {
-                //respawn code goes here
+                if (lives > 0)
+                {
+                    SoundManager.instance.Play(playerDamage, soundFXGroup);
+                }
                 Destroy(playerInstance);
                 SpawnPlayer(currentLevel.spawnPoint);
             }
@@ -46,9 +54,8 @@ public class GameManager : MonoBehaviour
             if (_lives < 0)
             {
                 SceneManager.LoadScene("GameOver");
-            }
-
-            
+                SoundManager.instance.Play(gameOver, soundFXGroup);
+            }           
 
             Debug.Log("Lives Set to: " + lives.ToString());
         }
@@ -73,9 +80,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance)
@@ -87,24 +91,8 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (SceneManager.GetActiveScene().name == "Title")
-            {
-                SceneManager.LoadScene("SampleScene");
-            }
-            else
-            {
-                SceneManager.LoadScene("Title");
-            }
-        }*/        
     }
-
     public void SpawnPlayer(Transform spawnlocation)
     {
         playerInstance = Instantiate(playerPrefab, spawnlocation.position, spawnlocation.rotation);

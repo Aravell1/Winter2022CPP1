@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(Animator))]
 public class Player : MonoBehaviour
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
     Transform groundCheck;
 
     bool coroutineRunning = false;
+
+    public AudioClip jump;
+    public AudioMixerGroup soundFXGroup;
 
 
     // Start is called before the first frame update
@@ -98,6 +102,7 @@ public class Player : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 rb.AddForce(Vector2.up * jumpForce);
+                SoundManager.instance.Play(jump, soundFXGroup);
             }
 
             if (Input.GetKeyDown(KeyCode.W))

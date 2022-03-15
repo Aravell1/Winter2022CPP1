@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public float lifetime;
     public int damageValue;
 
+
     // Start is called before the first frame update
     void Start()
     {

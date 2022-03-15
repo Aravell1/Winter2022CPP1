@@ -93,6 +93,7 @@ public class CanvasManager : MonoBehaviour
 
     void OnSliderValueChange(float value)
     {
+        //mixer.SetFloat(MasterVol, value);
         volSliderText.text = value.ToString();
     }
 

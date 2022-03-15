@@ -121,6 +121,8 @@ MonoBehaviour:
   speed: 0
   lifetime: 0
   damageValue: 0
+  playerDeath: {fileID: 8300000, guid: ce22dfa18a8a4544c8603c19d2e7268e, type: 3}
+  soundFXGroup: {fileID: 5775736607157703811, guid: af0f6d8df531d1540a6fbd730718dccb, type: 2}
 --- !u!58 &-8292737696776529599
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+
 
 public class EnemyWalker : Enemy
 {
@@ -8,7 +10,8 @@ public class EnemyWalker : Enemy
 
     [SerializeField] float speed;
 
-
+    public AudioClip enemyDeath;
+    public AudioMixerGroup soundFXGroup;
 
     // Start is called before the first frame update
     public override void Start()
@@ -65,6 +68,7 @@ public class EnemyWalker : Enemy
 
     public override void Death()
     {
+        SoundManager.instance.Play(enemyDeath, soundFXGroup);
         base.Death();
         anim.SetBool("Death", true);
         rb.velocity = Vector2.zero;

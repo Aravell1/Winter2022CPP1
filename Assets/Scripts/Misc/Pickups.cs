@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
+[RequireComponent(typeof(AudioSource))]
 public class Pickups : MonoBehaviour
 {
     enum CollectibleType
@@ -12,7 +14,10 @@ public class Pickups : MonoBehaviour
     }
 
     [SerializeField] CollectibleType curCollectible;
+    [SerializeField] AudioClip pickupSound;
+    AudioSource myAudioSource;
     public int ScoreValue;
+    public AudioMixerGroup soundFXGroup;
 
     private void Start()
     {
@@ -26,8 +31,13 @@ public class Pickups : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!myAudioSource)
+        {
+            myAudioSource = GetComponent<AudioSource>();
+        }
         if (collision.gameObject.tag == "Player")
         {
+            SoundManager.instance.Play(pickupSound, soundFXGroup);
             switch (curCollectible)
             {
                 case CollectibleType.POWERUP:
@@ -44,12 +54,17 @@ public class Pickups : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!myAudioSource)
+        {
+            myAudioSource = GetComponent<AudioSource>();
+        }
         if (collision.gameObject.tag == "PowerUp" || collision.gameObject.tag == "Enemy")
         {
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
         else if (collision.gameObject.tag == "Player")
         {
+            SoundManager.instance.Play(pickupSound, soundFXGroup);
             //Player curPlayerScript = collision.gameObject.GetComponent<Player>();
             switch (curCollectible)
             {
